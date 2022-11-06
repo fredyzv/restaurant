@@ -1,0 +1,74 @@
+@charset "ISO-8859-1";
+body, html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url("https://fondosmil.com/fondo/17010.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+body:before{
+    position: absolute;
+
+}
+.form-box{
+    width: 300px;
+    padding: 40px;
+    background: #191919;
+    text-align: center;
+    opacity: 0.97;
+}
+
+
+.form-title{
+    color: #fff;
+    text-transform: uppercase;
+    /*font-weight: 500;*/
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 40px;
+}
+
+.form-box input[type="text"],
+.form-box input[type="password"],
+.form-box input[type="submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid #3742fa;
+    width: 200px;
+    outline: none;
+    color:white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.form-box input[type="text"]:focus,
+.form-box input[type="password"]:focus{
+    opacity: 1;
+    width: 240px;
+    border-color: #ffffff;
+}
+
+.form-box input[type="submit"]{
+    border: 0;
+    background: #5352ed;
+    cursor: pointer;
+}
+
+.form-box input[type="submit"]:hover{
+    opacity: 1;
+    background: #7f7ee8;
+
+}
