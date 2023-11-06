@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PrincipalController {
@@ -28,7 +29,11 @@ public class PrincipalController {
     }
 
     @GetMapping("/login")
-    public String abrirLogin( Model model) {
+    public String abrirLogin(Model model, @RequestParam(value = "error", required = false) String error) {
+
+        if(error!=null){
+            model.addAttribute("error","Usuario y/o Contraseña incorrecto");
+        }
         model.addAttribute("usuario", new Usuario());
 
         return "login";

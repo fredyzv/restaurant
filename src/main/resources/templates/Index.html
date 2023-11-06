@@ -4,24 +4,140 @@
 
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="static/css/style-nav-left.css" th:href="@{/css/style-nav-left.css}"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style-nav-top.css" th:href="@{/css/style-nav-top.css}"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style-index.css" th:href="@{/css/style-index.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-<h1>INDEX</h1>
+<div class="nav-left" th:fragment="navbar-left">
+<nav sec:authorize="hasAnyAuthority('ROLE_ADMIN')" >
+    <ul>
+        <li><a href="#" class="logo">
+            <img src="/img/logo-rest.jpg" alt="">
+            <span class="nav-item">Administrador</span>
+        </a></li>
 
-<div class="animate__animated animate__fadeInUp" sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_USER')">
-    <div class="contenedor-right">
+        <li><a href="http://localhost:8080/">
+            <i class="fas fa-home"></i>
+            <span class="nav-item">Home</span>
+        </a></li>
 
-        <form  class="form-box" >
-            <h1 class="form-title">Tus datos</h1>
+        <li><a href="/usuario/listar">
+            <i class="fas fa-user"></i>
+            <span class="nav-item">Usuarios</span>
+        </a></li>
 
-            <h1 class="texto" th:text="${usuario.nombre}" ></h1>
-            <h1 class="texto" th:text="${usuario.apellido}" ></h1>
-            <h1 class="texto" th:text="${usuario.dni}" ></h1>
-        </form>
+        <li><a href="#">
+            <i class="fas fa-wallet"></i>
+            <span class="nav-item">Menus</span>
+        </a></li>
 
+        <li><a href="#">
+            <i class="fas fa-chart-bar"></i>
+            <span class="nav-item">Analisis</span>
+        </a></li>
+
+        <li><a href="#">
+            <i class="fas fa-tasks"></i>
+            <span class="nav-item">Tareas</span>
+        </a></li>
+
+        <li><a href="#">
+            <i class="fas fa-cog"></i>
+            <span class="nav-item">Configuracion</span>
+        </a></li>
+
+        <li><a href="#">
+            <i class="fas fa-question"></i>
+            <span class="nav-item">Ayuda</span>
+        </a></li>
+
+        <li><a href="/logout" class="logout">
+            <form action="/logout" method="post"></form>
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Cerrar sesión</span>
+        </a></li>
+    </ul>
+</nav>
+</div>
+
+<div class="contenido">
+    <div class="nav-top" th:fragment="navbar-top">
+        <img src="/img/logo-bri.png" alt="" class="logo">
+        <div class="bienvenida-logo" sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_USER')">
+            <h1>Bienvenido </h1>
+        </div>
+        <h1 th:text="${usuario.nombre}"></h1>
+
+        <nav>
+            <ul id="menuList">
+                <li><a href="">Menu</a></li>
+                <li><a href="">Sedes</a></li>
+                <li><a href="">Acerca de nosotros</a></li>
+                <li><a href="">Otros</a></li>
+                <li sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_USER')"><a href="/login">Iniciar sesión</a></li>
+                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_USER')"><a href="/logout">Cerrar sesión
+                    <form action="/logout" method="post"></form>
+                </a></li>
+            </ul>
+        </nav>
+        <img src="/img/menu.png" alt="" class="menu-icon" onclick="togglemenu()">
+    </div>
+
+    <div class="animate__animated animate__fadeInRight" >
+        <div class="fila">
+              <div class="col-1" sec:authorize="!hasAnyAuthority('ROLE_ADMIN')">
+                  <h2>Guiso de carne<br>Con yuca</h2>
+                  <h3>Servido con sopa y agua</h3>
+                  <p>(Menu/Ejecutivo)</p>
+                  <h4>S/.10.00</h4>
+                  <button type="button">Comprar<img src="/img/arrow.png" ></button>
+              </div>
+              <div class="col-2" sec:authorize="!hasAnyAuthority('ROLE_ADMIN')">
+                  <img src="/img/guiso-de-carne.png" class="imagen-index">
+                  <div class="color-box"></div>
+                  <div class="add-btn">
+                      <img src="/img/add.png">
+                      <p><small>Agregar al carrito</small></p>
+                  </div>
+              </div>
+
+
+                <div class="body-index" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                    <form class="form-box">
+                        <h1 class="form-title">Bienvenido</h1>
+                        <h1 class="texto-nombre" th:text="${usuario.nombre}"></h1>
+                        <h1 class="texto-apellido" th:text="${usuario.apellido}"></h1>
+                    </form>
+
+                </div>
+
+        </div>
+    </div>
+
+    <div class="social-links" sec:authorize="!hasAnyAuthority('ROLE_ADMIN')">
+        <img src="/img/fb.png">
+        <img src="/img/ig.png">
+        <img src="/img/tw.png">
     </div>
 </div>
+
+<script>
+    var menuList = document.getElementById("menuList");
+    menuList.style.maxHeight="0px";
+    function togglemenu(){
+        if(menuList.style.maxHeight=="0px"){
+            menuList.style.maxHeight="150px";
+        }
+        else{
+            menuList.style.maxHeight="0px";
+        }
+    }
+
+</script>
 </body>
 </html>

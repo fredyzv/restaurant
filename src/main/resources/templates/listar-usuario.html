@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/style-nav-left.css" th:href="@{/css/style-nav-left.css}"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style-nav-top.css" th:href="@{/css/style-nav-top.css}"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style-index.css" th:href="@{/css/style-index.css}"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style-table.css" th:href="@{/css/style-table.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+</head>
+<style>
+    .paginate_button{
+        color: blue;
+    }
+    #search{
+        background: red;
+    }
+    .table label{
+        color: red;
+    }
+</style>
+<body>
+
+<div class="contenido">
+    <div th:replace="index :: navbar-left"></div>
+    <div th:replace="index :: navbar-top"></div>
+
+    <div class="animate__animated animate__fadeInRight" >
+        <div class="container">
+            <h1 style="text-align: center">Listado de usuarios</h1>
+            <button type="button" style="margin-bottom: 20px">Agregar</button>
+
+            <table class="table table" id="tablax" style="margin-top: 20px">
+                <thead>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dni</th>
+                    <th>Telefono</th>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Rol</th>
+                    <th>Sucursal</th>
+                    <th>Acciones</th>
+
+                </thead>
+                <tbody>
+                    <tr th:each="u : ${lstUsuarios}">
+                        <td th:text="${u.codusuario}"></td>
+                        <td th:text="${u.nombre}"></td>
+                        <td th:text="${u.apellido}"></td>
+                        <td th:text="${u.dni}"></td>
+                        <td th:text="${u.telefono}"></td>
+                        <td th:text="${u.username}"></td>
+                        <td th:text="${u.contra}"></td>
+                        <td th:text="${u.codrol}"></td>
+                        <td th:text="${u.codsucursal}"></td>
+                        <td >boton</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script>
+    var menuList = document.getElementById("menuList");
+    menuList.style.maxHeight = "0px";
+
+    function togglemenu() {
+        if (menuList.style.maxHeight == "0px") {
+            menuList.style.maxHeight = "150px";
+        } else {
+            menuList.style.maxHeight = "0px";
+        }
+    }
+    $(document).ready(function () {
+        $('#tablax').DataTable({
+            language: {
+                processing: "Tratamiento en curso...",
+                search: "Buscar&nbsp;:",
+                lengthMenu: "Agrupar de _MENU_ items",
+                info: "Mostrando del item _START_ al _END_ de un total de _TOTAL_ items",
+                infoEmpty: "No existen datos.",
+                infoFiltered: "(filtrado de _MAX_ elementos en total)",
+                infoPostFix: "",
+                loadingRecords: "Cargando...",
+                zeroRecords: "No se encontraron datos con tu busqueda",
+                emptyTable: "No hay datos disponibles en la tabla.",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultimo"
+                },
+                aria: {
+                    sortAscending: ": active para ordenar la columna en orden ascendente",
+                    sortDescending: ": active para ordenar la columna en orden descendente"
+                }
+            },
+            scrollY: 400,
+            lengthMenu: [ [10, 25, -1], [10, 25, "All"] ],
+        });
+    });
+
+</script>
+</body>
+</html>

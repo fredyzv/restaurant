@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.contenido{
+    width: 100%;
+    min-height: 100vh;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.nav-top{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.nav-top .logo{
+    width: 50px;
+    cursor: pointer;
+    margin: 30px 0;
+}
+.nav-top .menu-icon{
+    width: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+/**/
+.nav-top nav{
+    flex: 1;
+    text-align: right;
+}
+.nav-top nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-right: 30px;
+}
+.nav-top nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+.nav-top nav ul li a:hover{
+    color: #ff5ea2;
+}
+

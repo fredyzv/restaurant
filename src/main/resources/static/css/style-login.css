@@ -7,7 +7,7 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: url("https://fondosmil.com/fondo/17010.jpg");
+    background-image: url("https://wallpapercrafter.com/desktop/208323-cafe-bar-restaurant-and-chairs-hd.jpg");
     background-size: cover;
     display: flex;
     flex-direction: row;
@@ -70,5 +70,10 @@ body:before{
 .form-box input[type="submit"]:hover{
     opacity: 1;
     background: #7f7ee8;
+}
 
+.error{
+    color: #db6c6c;
+    font-family: sans-serif;
+    text-align: center;
 }
